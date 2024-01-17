@@ -1,3 +1,7 @@
+<?php
+include_once __DIR__ . '/./utilities/functions.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,38 +18,19 @@
 
 <body>
     <main>
-        <div>
-            <form action="./index.php" method="GET">
-                <label for="password-length">Lunghezza Password</label>
-                <input class="form-control" type="number" name="password-length" id="password-length" placeholder="Default input" aria-label="default input example">
-                <button type="submit">Invia</button>
-            </form>
-            <p><?php echo (getPassword($_GET['password-length'])) ?></p>
+        <div class="container">
+            <h1 class="text-center">Strong Password Generator</h1>
+            <h2 class="text-center">Genera una password sicura</h2>
+            <div>
+                <form action="./index.php" method="GET">
+                    <label for="password-length"></label>
+                    <input class="form-control" type="number" name="password-length" id="password-length" placeholder="Nessun parametro valido inserito" aria-label="default input example">
+                    <button class="btn btn-outline-secondary">Invia</button>
+                </form>
+            </div>
+            <p class="text-center"><?php echo (getPassword($_GET['password-length'])) ?></p>
         </div>
     </main>
 </body>
 
 </html>
-
-<?php
-
-function getPassword($n)
-{
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+-={}[]|:;"<>,.?/';
-    $randomString = '';
-
-    for ($i = 0; $i < $n; $i++) {
-        $index = rand(0, strlen($characters) - 1);
-        $randomString .= $characters[$index];
-    }
-
-    return $randomString;
-}
-
-
-// function randomPassword($number)
-// {
-//     $bytes = random_bytes($number);
-//     return bin2hex($bytes);
-// }
-?>
