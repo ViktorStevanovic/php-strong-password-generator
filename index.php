@@ -1,5 +1,7 @@
 <?php
 include_once __DIR__ . '/./utilities/functions.php';
+session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -26,11 +28,17 @@ include_once __DIR__ . '/./utilities/functions.php';
                     <label for="password-length"></label>
                     <input class="form-control" type="number" name="password-length" id="password-length" placeholder="Nessun parametro valido inserito" aria-label="default input example">
                     <button class="btn btn-outline-secondary">Invia</button>
+                    <?php $_SESSION['password'] = getPassword($_GET['password-length']);
+                    if (isset($_GET['password-length'])) {
+                        header('Location: /php-strong-password-generator/password.php');
+                    };
+                    ?>
                 </form>
             </div>
-            <p class="text-center"><?php echo (getPassword($_GET['password-length'])) ?></p>
+
         </div>
     </main>
 </body>
 
 </html>
+<!-- echo (getPassword($_GET['password-length'])) -->
